@@ -3,87 +3,200 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
-  <title>Document</title>
+  <title>AR - Espadas dos Games</title>
   <script src="https://aframe.io/releases/1.4.2/aframe.min.js"></script>
-  <!-- include ar.js for A-Frame -->
   <script src="https://cdn.jsdelivr.net/gh/AR-js-org/AR.js@3.4.5/aframe/build/aframe-ar.min.js"></script>
   <style>
-    #controls { display: none; position: fixed; z-index: 999; bottom: 20px; left: 0; }
+    * {
+      user-select: none;
+      -webkit-tap-highlight-color: transparent;
+    }
+    #controls { 
+      display: none; 
+      position: fixed; 
+      z-index: 999; 
+      bottom: 20px; 
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(0,0,0,0.85);
+      backdrop-filter: blur(10px);
+      padding: 15px 20px;
+      border-radius: 20px;
+      color: white;
+      font-family: Arial, sans-serif;
+      min-width: 280px;
+      text-align: center;
+      border: 1px solid rgba(255,255,255,0.2);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    }
     #controls.visible { display: block; }
+    #active-marker-label {
+      font-weight: bold;
+      margin-bottom: 12px;
+      font-size: 14px;
+      color: #ffd700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    .control-group {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin: 8px 0;
+      gap: 10px;
+    }
+    .control-group span:first-child {
+      width: 50px;
+      font-size: 12px;
+      text-align: left;
+    }
+    .control-group span.value {
+      width: 35px;
+      text-align: center;
+      font-weight: bold;
+      color: #ffd700;
+    }
+    button {
+      background: #333;
+      border: none;
+      color: white;
+      font-size: 18px;
+      font-weight: bold;
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.2s;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    }
+    button:active {
+      background: #ffd700;
+      color: #000;
+      transform: scale(0.95);
+    }
+    .control-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 15px;
+      margin-top: 10px;
+      padding-top: 10px;
+      border-top: 1px solid rgba(255,255,255,0.2);
+    }
+    h4 {
+      margin: 0 0 10px 0;
+      font-size: 14px;
+      color: #ffd700;
+    }
   </style>
 </head>
-<body style='margin: 0px; overflow: hidden;'>
-  <a-scene embedded arjs>
-
+<body style='margin: 0px; overflow: hidden; background: black;'>
+  
+  <a-scene embedded arjs="sourceType: webcam; debugUIEnabled: false;">
+    
     <a-assets>
-      <!-- https://sketchfab.com/3d-models/2025-mg-cyberster-glbmgmotorcommx-194c998698594d7e825c9f5dedcdbef3 -->
-      <a-asset-item id="carro1" src="./carro.glb"></a-asset-item>
-      <!-- https://sketchfab.com/3d-models/peugeot-206-glb-1d278036c89d489bb47ccd33b0effa21 -->
-      <a-asset-item id="carro2" src="./carro2.glb"></a-asset-item>
+      <!-- MINECRAFT - Espada do Minecraft -->
+      <a-asset-item id="espadaMinecraft" src="./minecraft_swords.glb"></a-asset-item>
+      
+      <!-- SUPER MARIO - Flor de Fogo -->
+      <a-asset-item id="florFogo" src="./fire_flower_super_mario_bros.glb"></a-asset-item>
+      
+      <!-- ZELDA - Master Sword -->
+      <a-asset-item id="masterSword" src="./???"></a-asset-item>
+      
+      <!-- KINGDOM HEARTS - Chave (Kingdom Key) -->
+      <a-asset-item id="kingdomKey" src="./kingdom_key.glb></a-asset-item>
+      
+      <!-- HOLLOW KNIGHT - Ferrão -- >
+      <a-asset-item id="ferraoHollow" src="./???"></a-asset-item>
+      
+      <!-- GOD OF WAR - Laminas do Caos -->
+      <a-asset-item id="laminasCaos" src="./???"></a-asset-item>
     </a-assets>
 
-    <a-marker type="pattern" url="./pattern-letterB.patt">
-      <a-entity id="model1" gltf-model="#carro1" rotation="-90 0 0" scale="1 1 1"></a-entity>
+    <!-- MINECRAFT - Marcador A (pattern-letterA.patt) -->
+    <a-marker id="marker-minecraft" type="pattern" url="./pattern-letterA.patt">
+      <a-entity id="model-minecraft" gltf-model="#espadaMinecraft" rotation="-90 0 0" scale="0.5 0.5 0.5"></a-entity>
     </a-marker>
 
-    <a-marker type="pattern" url="./pattern-letterA.patt">
-      <a-entity id="model2" gltf-model="#carro2" rotation="-90 0 0" scale="1 1 1"></a-entity>
+    <!-- SUPER MARIO - Marcador B (pattern-letterB.patt) -->
+    <a-marker id="marker-mario" type="pattern" url="./pattern-letterB.patt">
+      <a-entity id="model-mario" gltf-model="#florFogo" rotation="-90 0 0" scale="0.5 0.5 0.5"></a-entity>
+    </a-marker>
+
+    <!-- ZELDA - Marcador C (pattern-letterC.patt) -->
+    <a-marker id="marker-zelda" type="pattern" url="./pattern-letterC.patt">
+      <a-entity id="model-zelda" gltf-model="#masterSword" rotation="-90 0 0" scale="0.5 0.5 0.5"></a-entity>
+    </a-marker>
+
+    <!-- KINGDOM HEARTS - Marcador E (pattern-letterE.patt) -->
+    <a-marker id="marker-kh" type="pattern" url="./pattern-letterE.patt">
+      <a-entity id="model-kh" gltf-model="#kingdomKey" rotation="-90 0 0" scale="0.5 0.5 0.5"></a-entity>
+    </a-marker>
+
+    <!-- HOLLOW KNIGHT - Marcador F (pattern-letterF.patt) -->
+    <a-marker id="marker-hollow" type="pattern" url="./pattern-letterF.patt">
+      <a-entity id="model-hollow" gltf-model="#ferraoHollow" rotation="-90 0 0" scale="0.5 0.5 0.5"></a-entity>
+    </a-marker>
+
+    <!-- GOD OF WAR - Marcador D (pattern-letterD.patt) -->
+    <a-marker id="marker-gow" type="pattern" url="./pattern-letterD.patt">
+      <a-entity id="model-gow" gltf-model="#laminasCaos" rotation="-90 0 0" scale="0.5 0.5 0.5"></a-entity>
     </a-marker>
 
     <a-entity camera></a-entity>
-
   </a-scene>
 
+  <!-- PAINEL DE CONTROLE -->
   <div id="controls">
     <div id="active-marker-label">—</div>
-    <!-- Escala -->
-    <div>
-      <span>Escala</span>
+    
+    <div class="control-group">
+      <span> Escala</span>
       <button onclick="changeScale(-0.1)">−</button>
-      <span id="scaleVal">1.0</span>
+      <span id="scaleVal" class="value">1.0</span>
       <button onclick="changeScale(0.1)">+</button>
     </div>
-    <!-- Position X -->
-    <div>
-      <span>Pos X</span>
-      <button onclick="changePos('x', -0.1)">−</button>
-      <span id="posXVal">0.0</span>
-      <button onclick="changePos('x', 0.1)">+</button>
+    
+    <div class="control-row">
+      <div class="control-group">
+        <span> Pos X</span>
+        <button onclick="changePos('x', -0.05)">−</button>
+        <span id="posXVal" class="value">0.0</span>
+        <button onclick="changePos('x', 0.05)">+</button>
+      </div>
+      <div class="control-group">
+        <span>Pos Y</span>
+        <button onclick="changePos('y', -0.05)">−</button>
+        <span id="posYVal" class="value">0.0</span>
+        <button onclick="changePos('y', 0.05)">+</button>
+      </div>
+      <div class="control-group">
+        <span> Pos Z</span>
+        <button onclick="changePos('z', -0.05)">−</button>
+        <span id="posZVal" class="value">0.0</span>
+        <button onclick="changePos('z', 0.05)">+</button>
+      </div>
     </div>
-    <!-- Position Y -->
-    <div>
-      <span>Pos Y</span>
-      <button onclick="changePos('y', -0.1)">−</button>
-      <span id="posYVal">0.0</span>
-      <button onclick="changePos('y', 0.1)">+</button>
-    </div>
-    <!-- Position Z -->
-    <div>
-      <span>Pos Z</span>
-      <button onclick="changePos('z', -0.1)">−</button>
-      <span id="posZVal">0.0</span>
-      <button onclick="changePos('z', 0.1)">+</button>
-    </div>
-    <!-- Rotation X -->
-    <div>
-      <span>Rot X</span>
-      <button onclick="changeRot('x', -15)">−</button>
-      <span id="rotXVal">-90</span>
-      <button onclick="changeRot('x', 15)">+</button>
-    </div>
-    <!-- Rotation Y -->
-    <div>
-      <span>Rot Y</span>
-      <button onclick="changeRot('y', -15)">−</button>
-      <span id="rotYVal">0</span>
-      <button onclick="changeRot('y', 15)">+</button>
-    </div>
-    <!-- Rotation Z -->
-    <div>
-      <span>Rot Z</span>
-      <button onclick="changeRot('z', -15)">−</button>
-      <span id="rotZVal">0</span>
-      <button onclick="changeRot('z', 15)">+</button>
+    
+    <div class="control-row">
+      <div class="control-group">
+        <span> Rot X</span>
+        <button onclick="changeRot('x', -15)">−</button>
+        <span id="rotXVal" class="value">-90</span>
+        <button onclick="changeRot('x', 15)">+</button>
+      </div>
+      <div class="control-group">
+        <span> Rot Y</span>
+        <button onclick="changeRot('y', -15)">−</button>
+        <span id="rotYVal" class="value">0</span>
+        <button onclick="changeRot('y', 15)">+</button>
+      </div>
+      <div class="control-group">
+        <span> Rot Z</span>
+        <button onclick="changeRot('z', -15)">−</button>
+        <span id="rotZVal" class="value">0</span>
+        <button onclick="changeRot('z', 15)">+</button>
+      </div>
     </div>
   </div>
 
@@ -91,51 +204,85 @@
     const controls = document.getElementById('controls');
     const activeMarkerLabel = document.getElementById('active-marker-label');
 
-    // Cada marcador tem seu próprio modelo e estado independente
+    // CONFIGURACAO DOS 6 MARCADORES/MODELOS
     const markerConfig = [
       {
-        name: 'Letter B (carro.glb)',
-        el: document.querySelector('[url="./pattern-letterB.patt"]'),
-        model: document.getElementById('model1'),
-        state: { scale: 1.0, pos: { x: 0, y: 0, z: 0 }, rot: { x: -90, y: 0, z: 0 } }
+        name: ' Minecraft - Espada',
+        markerUrl: './pattern-letterA.patt',
+        modelId: 'model-minecraft',
+        state: { scale: 0.5, pos: { x: 0, y: 0, z: 0 }, rot: { x: -90, y: 0, z: 0 } }
       },
       {
-        name: 'Letter A (carro2.glb)',
-        el: document.querySelector('[url="./pattern-letterA.patt"]'),
-        model: document.getElementById('model2'),
-        state: { scale: 1.0, pos: { x: 0, y: 0, z: 0 }, rot: { x: -90, y: 0, z: 0 } }
+        name: ' Super Mario - Flor de Fogo',
+        markerUrl: './pattern-letterB.patt',
+        modelId: 'model-mario',
+        state: { scale: 0.5, pos: { x: 0, y: 0, z: 0 }, rot: { x: -90, y: 0, z: 0 } }
+      },
+      {
+        name: ' Zelda - Master Sword',
+        markerUrl: './pattern-letterC.patt',
+        modelId: 'model-zelda',
+        state: { scale: 0.5, pos: { x: 0, y: 0, z: 0 }, rot: { x: -90, y: 0, z: 0 } }
+      },
+      {
+        name: ' Kingdom Hearts - Chave',
+        markerUrl: './pattern-letterE.patt',
+        modelId: 'model-kh',
+        state: { scale: 0.5, pos: { x: 0, y: 0, z: 0 }, rot: { x: -90, y: 0, z: 0 } }
+      },
+      {
+        name: ' Hollow Knight - Ferrão',
+        markerUrl: './pattern-letterF.patt',
+        modelId: 'model-hollow',
+        state: { scale: 0.5, pos: { x: 0, y: 0, z: 0 }, rot: { x: -90, y: 0, z: 0 } }
+      },
+      {
+        name: ' God of War - Laminas do Caos',
+        markerUrl: './pattern-letterD.patt',
+        modelId: 'model-gow',
+        state: { scale: 0.5, pos: { x: 0, y: 0, z: 0 }, rot: { x: -90, y: 0, z: 0 } }
       }
     ];
 
     let activeMarker = null;
 
     markerConfig.forEach(m => {
-      m.el.addEventListener('markerFound', () => {
-        activeMarker = m;
-        console.log(`[AR] markerFound: ${m.name}`);
-        activeMarkerLabel.textContent = `Marcador ativo: ${m.name}`;
-        syncDisplays(m.state);
-        controls.classList.add('visible');
-      });
+      const markerEl = document.querySelector(`[url="${m.markerUrl}"]`);
+      const modelEl = document.getElementById(m.modelId);
+      
+      if (markerEl && modelEl) {
+        m.el = markerEl;
+        m.model = modelEl;
+        
+        markerEl.addEventListener('markerFound', () => {
+          activeMarker = m;
+          console.log(`[AR] Marcador encontrado: ${m.name}`);
+          activeMarkerLabel.innerHTML = `${m.name}`;
+          syncDisplays(m.state);
+          controls.classList.add('visible');
+        });
 
-      m.el.addEventListener('markerLost', () => {
-        console.log(`[AR] markerLost: ${m.name}`);
-        if (activeMarker === m) {
-          activeMarker = null;
-          controls.classList.remove('visible');
-        }
-      });
+        markerEl.addEventListener('markerLost', () => {
+          console.log(`[AR] Marcador perdido: ${m.name}`);
+          if (activeMarker === m) {
+            activeMarker = null;
+            controls.classList.remove('visible');
+            activeMarkerLabel.innerHTML = '—';
+          }
+        });
+      } else {
+        console.warn(`⚠️ Marcador ou modelo não encontrado: ${m.name}`);
+      }
     });
 
-    // Atualiza todos os displays com o estado do marcador ativo
     function syncDisplays(state) {
       document.getElementById('scaleVal').textContent = state.scale.toFixed(1);
-      document.getElementById('posXVal').textContent  = state.pos.x.toFixed(1);
-      document.getElementById('posYVal').textContent  = state.pos.y.toFixed(1);
-      document.getElementById('posZVal').textContent  = state.pos.z.toFixed(1);
-      document.getElementById('rotXVal').textContent  = state.rot.x;
-      document.getElementById('rotYVal').textContent  = state.rot.y;
-      document.getElementById('rotZVal').textContent  = state.rot.z;
+      document.getElementById('posXVal').textContent = state.pos.x.toFixed(1);
+      document.getElementById('posYVal').textContent = state.pos.y.toFixed(1);
+      document.getElementById('posZVal').textContent = state.pos.z.toFixed(1);
+      document.getElementById('rotXVal').textContent = state.rot.x;
+      document.getElementById('rotYVal').textContent = state.rot.y;
+      document.getElementById('rotZVal').textContent = state.rot.z;
     }
 
     function changeScale(delta) {
@@ -149,9 +296,9 @@
     function changePos(axis, delta) {
       if (!activeMarker) return;
       const p = activeMarker.state.pos;
-      p[axis] = parseFloat((p[axis] + delta).toFixed(1));
+      p[axis] = parseFloat((p[axis] + delta).toFixed(2));
       activeMarker.model.setAttribute('position', `${p.x} ${p.y} ${p.z}`);
-      document.getElementById(`pos${axis.toUpperCase()}Val`).textContent = p[axis].toFixed(1);
+      document.getElementById(`pos${axis.toUpperCase()}Val`).textContent = p[axis].toFixed(2);
     }
 
     function changeRot(axis, delta) {
@@ -161,6 +308,8 @@
       activeMarker.model.setAttribute('rotation', `${r.x} ${r.y} ${r.z}`);
       document.getElementById(`rot${axis.toUpperCase()}Val`).textContent = r[axis];
     }
+
+    console.log('AR Ready - 6 modelos carregados!');
   </script>
 </body>
 </html>
