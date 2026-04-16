@@ -115,17 +115,17 @@
 
     <!-- MINECRAFT - Marcador (pattern-minecraftSword.patt) -->
     <a-marker id="marker-minecraft" type="pattern" url="./pattern-minecraftSword.patt">
-      <a-entity id="model-minecraft" gltf-model="#espadaMinecraft" rotation="-90 0 0" scale="0.08 0.08 0.08"></a-entity>
+      <a-entity id="model-minecraft" gltf-model="#espadaMinecraft" rotation="-90 0 0" scale="0.1 0.1 0.1"></a-entity>
     </a-marker>
 
     <!-- SUPER MARIO - Marcador (pattern-flordeFogo.patt) -->
     <a-marker id="marker-mario" type="pattern" url="./pattern-flordeFogo.patt">
-      <a-entity id="model-mario" gltf-model="#florFogo" rotation="-90 0 0" scale="0.01 0.01 0.01"></a-entity>
+      <a-entity id="model-mario" gltf-model="#florFogo" rotation="-90 0 0" scale="0.001 0.001 0.001"></a-entity>
     </a-marker>
 
     <!-- ZELDA - Marcador (pattern-MasterSword.patt) -->
     <a-marker id="marker-zelda" type="pattern" url="./pattern-MasterSword.patt">
-      <a-entity id="model-zelda" gltf-model="#masterSword" rotation="-90 0 0" scale="0.5 0.5 0.5"></a-entity>
+      <a-entity id="model-zelda" gltf-model="#masterSword" rotation="90 0 0" scale="0.10 0.10 0.10"></a-entity>
     </a-marker>
 
     <!-- KINGDOM HEARTS - Marcador (chaveKH.patt) -->
@@ -135,7 +135,7 @@
 
     <!-- HOLLOW KNIGHT - Marcador (pattern-ferrao.patt) -->
     <a-marker id="marker-hollow" type="pattern" url="./pattern-ferrao.patt">
-      <a-entity id="model-hollow" gltf-model="#ferraoHollow" rotation="-90 0 0" scale="0.5 0.5 0.5"></a-entity>
+      <a-entity id="model-hollow" gltf-model="#ferraoHollow" rotation="-90 0 0" scale="0.001 0.001 0.001"></a-entity>
     </a-marker>
 
     <!-- GOD OF WAR - Marcador (pattern-LaminasCaos.patt) -->
@@ -143,7 +143,15 @@
       <a-entity id="model-gow" gltf-model="#laminasCaos" rotation="-90 0 0" scale="0.5 0.5 0.5"></a-entity>
     </a-marker>
 
-    <a-entity camera></a-entity>
+    <!-- Iluminacao moderada para evitar modelos lavados -->
+    <a-entity light="type: ambient; color: #ffffff; intensity: 0.7"></a-entity>
+    <a-entity light="type: hemisphere; color: #ffffff; groundColor: #aeb9c9; intensity: 0.45"></a-entity>
+
+    <!-- Luzes que acompanham a camera com intensidade mais baixa -->
+    <a-entity camera>
+      <a-entity light="type: directional; color: #ffffff; intensity: 0.55" position="0 0 1"></a-entity>
+      <a-entity light="type: directional; color: #ffffff; intensity: 0.25" position="0 0 -1"></a-entity>
+    </a-entity>
   </a-scene>
 
   <!-- PAINEL DE CONTROLE -->
@@ -210,7 +218,7 @@
         name: ' Minecraft - Espada',
         markerUrl: './pattern-minecraftSword.patt',
         modelId: 'model-minecraft',
-        state: { scale: 0.08, pos: { x: 0, y: 0, z: 0 }, rot: { x: -90, y: 0, z: 0 } }
+        state: { scale: 0.1, pos: { x: 0, y: 0, z: 0 }, rot: { x: -90, y: 0, z: 0 } }
       },
       {
         name: ' Super Mario - Flor de Fogo',
@@ -222,7 +230,7 @@
         name: ' Zelda - Master Sword',
         markerUrl: './pattern-MasterSword.patt',
         modelId: 'model-zelda',
-        state: { scale: 0.5, pos: { x: 0, y: 0, z: 0 }, rot: { x: -90, y: 0, z: 0 } }
+        state: { scale: 0.70, pos: { x: 0, y: 0, z: 0 }, rot: { x: -15, y: 0, z: 0 } }
       },
       {
         name: ' Kingdom Hearts - Chave',
@@ -234,13 +242,13 @@
         name: ' Hollow Knight - Ferrão',
         markerUrl: './pattern-ferrao.patt',
         modelId: 'model-hollow',
-        state: { scale: 0.5, pos: { x: 0, y: 0, z: 0 }, rot: { x: -90, y: 0, z: 0 } }
+        state: { scale: 0.01, pos: { x: 0, y: 0, z: 0 }, rot: { x: -90, y: 0, z: 0 } }
       },
       {
         name: ' God of War - Laminas do Caos',
         markerUrl: './pattern-LaminasCaos.patt',
         modelId: 'model-gow',
-        state: { scale: 0.5, pos: { x: 0, y: 0, z: 0 }, rot: { x: -90, y: 0, z: 0 } }
+        state: { scale: 0.5, pos: { x: 0, y: -3, z: 1.85 }, rot: { x: -90, y: 0, z: 0 } }
       }
     ];
 
