@@ -87,6 +87,73 @@
       font-size: 14px;
       color: #ffd700;
     }
+    #description-panel {
+      display: none;
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      z-index: 998;
+      background: rgba(0, 0, 0, 0.9);
+      backdrop-filter: blur(10px);
+      padding: 20px;
+      border-radius: 12px;
+      color: white;
+      font-family: Arial, sans-serif;
+      max-width: 350px;
+      border: 2px solid #ffd700;
+      box-shadow: 0 4px 20px rgba(255, 215, 0, 0.3);
+      max-height: 70vh;
+      overflow-y: auto;
+    }
+    #description-panel.visible {
+      display: block;
+      animation: slideIn 0.3s ease-out;
+    }
+    @keyframes slideIn {
+      from {
+        opacity: 0;
+        transform: translateX(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+    #weapon-title {
+      font-size: 18px;
+      font-weight: bold;
+      color: #ffd700;
+      margin-bottom: 12px;
+      text-transform: uppercase;
+      border-bottom: 1px solid rgba(255, 215, 0, 0.3);
+      padding-bottom: 8px;
+    }
+    #weapon-origin {
+      font-size: 12px;
+      color: #cccccc;
+      font-style: italic;
+      margin-bottom: 10px;
+    }
+    #weapon-lore {
+      font-size: 13px;
+      line-height: 1.6;
+      color: #e0e0e0;
+      margin-bottom: 12px;
+    }
+    #weapon-curiosity {
+      font-size: 12px;
+      color: #a8d5ff;
+      background: rgba(168, 213, 255, 0.1);
+      padding: 10px;
+      border-left: 3px solid #a8d5ff;
+      border-radius: 4px;
+      margin-top: 10px;
+    }
+    #weapon-curiosity-label {
+      font-weight: bold;
+      color: #ffd700;
+      margin-bottom: 5px;
+    }
   </style>
 </head>
 <body style='margin: 0px; overflow: hidden; background: black;'>
@@ -116,31 +183,55 @@
     <!-- MINECRAFT - Marcador (pattern-minecraftSword.patt) -->
     <a-marker id="marker-minecraft" type="pattern" url="./pattern-minecraftSword.patt">
       <a-entity id="model-minecraft" gltf-model="#espadaMinecraft" rotation="-90 0 0" scale="0.1 0.1 0.1"></a-entity>
+      <a-entity position="0 0 -1.5" rotation="-90 0 0">
+        <a-plane width="3" height="1.6" color="#000" opacity="0.8"></a-plane>
+        <a-text value="MINECRAFT - ESPADA\nOrigem: Minecraft\n\nA Espada de Diamante foi por muito tempo a arma\nmais iconica e cobicada do Minecraft. E essencial\npara derrotar os monstros e o Ender Dragon.\n\nCuriosidade: Hoje ela pode ser aprimorada para\nNetherite e resistir ao fogo!" color="#ffd700" width="2.8" wrap-count="42" align="center" position="0 0 0.05"></a-text>
+      </a-entity>
     </a-marker>
 
     <!-- SUPER MARIO - Marcador (pattern-flordeFogo.patt) -->
     <a-marker id="marker-mario" type="pattern" url="./pattern-flordeFogo.patt">
       <a-entity id="model-mario" gltf-model="#florFogo" rotation="-90 0 0" scale="0.001 0.001 0.001"></a-entity>
+      <a-entity position="0 0 -1.5" rotation="-90 0 0">
+        <a-plane width="3" height="1.6" color="#000" opacity="0.8"></a-plane>
+        <a-text value="SUPER MARIO - FLOR DE FOGO\nOrigem: Super Mario Bros\n\nA Flor de Fogo transforma o Mario em Fire Mario,\nconcedendo a habilidade de lancar bolas de\nfogo que quicam pelo cenario.\n\nCuriosidade: As bolas de fogo podem derrotar\ninimigos imunes aos pulos e rendem moedas!" color="#ffd700" width="2.8" wrap-count="42" align="center" position="0 0 0.05"></a-text>
+      </a-entity>
     </a-marker>
 
     <!-- ZELDA - Marcador (pattern-MasterSword.patt) -->
     <a-marker id="marker-zelda" type="pattern" url="./pattern-MasterSword.patt">
       <a-entity id="model-zelda" gltf-model="#masterSword" rotation="90 0 0" scale="0.10 0.10 0.10"></a-entity>
+      <a-entity position="0 0 -1.5" rotation="-90 0 0">
+        <a-plane width="3" height="1.6" color="#000" opacity="0.8"></a-plane>
+        <a-text value="ZELDA - MASTER SWORD\nOrigem: A Link to the Past\n\nConhecida como 'Lamina que Bane o Mal', a Master\nSword e a arma sagrada capaz de repelir magias\nmalignas e a unica capaz de derrotar Ganon.\n\nCuriosidade: Em 'Breath of the Wild', ela exige que\nLink tenha coracoes especificos para puxa-la." color="#ffd700" width="2.8" wrap-count="42" align="center" position="0 0 0.05"></a-text>
+      </a-entity>
     </a-marker>
 
     <!-- KINGDOM HEARTS - Marcador (chaveKH.patt) -->
     <a-marker id="marker-kh" type="pattern" url="./chaveKH.patt">
       <a-entity id="model-kh" gltf-model="#kingdomKey" rotation="-90 0 0" scale="0.5 0.5 0.5"></a-entity>
+      <a-entity position="0 0 -1.5" rotation="-90 0 0">
+        <a-plane width="3" height="1.6" color="#000" opacity="0.8"></a-plane>
+        <a-text value="KINGDOM HEARTS - CHAVE\nOrigem: Kingdom Hearts\n\nA Kingdom Key possui grande poder magico e a\ncapacidade de abrir as 'Fechaduras' dos mundos.\n\nCuriosidade: Inicialmente ela nao escolheu Sora.\nEla seria do seu amigo Riku, mas o coracao\nde Sora se mostrou mais forte na hora." color="#ffd700" width="2.8" wrap-count="42" align="center" position="0 0 0.05"></a-text>
+      </a-entity>
     </a-marker>
 
     <!-- HOLLOW KNIGHT - Marcador (pattern-ferrao.patt) -->
     <a-marker id="marker-hollow" type="pattern" url="./pattern-ferrao.patt">
       <a-entity id="model-hollow" gltf-model="#ferraoHollow" rotation="-90 0 0" scale="0.001 0.001 0.001"></a-entity>
+      <a-entity position="0 0 -1.5" rotation="-90 0 0">
+        <a-plane width="3" height="1.6" color="#000" opacity="0.8"></a-plane>
+        <a-text value="HOLLOW KNIGHT - FERRAO\nOrigem: Hollow Knight\n\nO Ferrao e a arma principal em Hallownest.\nO protagonista comeca com um Ferrao Antigo,\nque pode ser aprimorado na jornada.\n\nCuriosidade: A forma final exige Minerio Palido\ne uma decisao moral dificil com o Ferreiro." color="#ffd700" width="2.8" wrap-count="42" align="center" position="0 0 0.05"></a-text>
+      </a-entity>
     </a-marker>
 
     <!-- GOD OF WAR - Marcador (pattern-LaminasCaos.patt) -->
     <a-marker id="marker-gow" type="pattern" url="./pattern-LaminasCaos.patt">
       <a-entity id="model-gow" gltf-model="#laminasCaos" rotation="-90 0 0" scale="0.5 0.5 0.5"></a-entity>
+      <a-entity position="0 0 -1.5" rotation="-90 0 0">
+        <a-plane width="3" height="1.6" color="#000" opacity="0.8"></a-plane>
+        <a-text value="GOD OF WAR - LAMINAS DO CAOS\nOrigem: God of War (2005)\n\nForjadas por Ares no Tartaro, foram fundidas aos\nbracos do espartano Kratos como simbolo\nde sua servidao eterna.\n\nCuriosidade: O fogo das Laminas e um dos poucos\ncapazes de queimar no congelante Helheim." color="#ffd700" width="2.8" wrap-count="42" align="center" position="0 0 0.05"></a-text>
+      </a-entity>
     </a-marker>
 
     <!-- Iluminacao moderada para evitar modelos lavados -->
@@ -212,6 +303,44 @@
     const controls = document.getElementById('controls');
     const activeMarkerLabel = document.getElementById('active-marker-label');
 
+    // Responsividade dos paineis de texto para celulares
+    function adjustPanelsForMobile() {
+      // Verifica pela API do A-Frame ou pela largura da tela se e um dispositivo mobile
+      const isMobile = window.innerWidth <= 768 || (typeof AFRAME !== 'undefined' && AFRAME.utils.device.isMobile());
+      
+      // Ajusta o painel de controles (HUD HTML) visando nao ocupar toda a tela do celular
+      if (isMobile) {
+        controls.style.transform = 'translateX(-50%) scale(0.8)';
+        controls.style.transformOrigin = 'bottom center';
+        controls.style.bottom = '10px';
+        controls.style.width = '95vw';
+      } else {
+        controls.style.transform = 'translateX(-50%) scale(1)';
+        controls.style.bottom = '20px';
+        controls.style.width = 'auto';
+      }
+
+      // Procura todos os fundos (a-plane) e aplica a responsividade na entidade pai que os envelopam
+      const planes = document.querySelectorAll('a-plane');
+      planes.forEach(plane => {
+        const panelEntity = plane.parentNode;
+        if (isMobile) {
+          // Diminui o container do texto pela metade e traz mais pra perto do marcador pra nao sair da tela
+          panelEntity.setAttribute('scale', '0.5 0.5 0.5');
+          panelEntity.setAttribute('position', '0 0 -0.8');
+        } else {
+          // Tamanho original do painel para uso no computador ou janelas grandes
+          panelEntity.setAttribute('scale', '1 1 1');
+          panelEntity.setAttribute('position', '0 0 -1.5');
+        }
+      });
+    }
+
+    // Ouvintes para se adaptar caso a tela seja redimensionada/girada
+    window.addEventListener('resize', adjustPanelsForMobile);
+    // Aplica a responsividade instantes apos o carregamento AR
+    window.addEventListener('load', () => setTimeout(adjustPanelsForMobile, 300));
+
     // CONFIGURACAO DOS 6 MARCADORES/MODELOS
     const markerConfig = [
       {
@@ -262,7 +391,6 @@
         m.el = markerEl;
         m.model = modelEl;
 
-        // Mantem o estado JS e o estado visual do modelo sempre sincronizados.
         m.model.setAttribute('scale', `${m.state.scale} ${m.state.scale} ${m.state.scale}`);
         m.model.setAttribute('position', `${m.state.pos.x} ${m.state.pos.y} ${m.state.pos.z}`);
         m.model.setAttribute('rotation', `${m.state.rot.x} ${m.state.rot.y} ${m.state.rot.z}`);
@@ -330,7 +458,7 @@
       document.getElementById(`rot${axis.toUpperCase()}Val`).textContent = r[axis];
     }
 
-    console.log('AR Ready - 6 modelos carregados!');
+    console.log('AR Ready - 6 modelos carregados com descrições!');
   </script>
 </body>
 </html>
